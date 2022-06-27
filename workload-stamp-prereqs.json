@@ -104,6 +104,26 @@
                         }
                     ],
                     "outputs": {
+                        "deliveryIdName": {
+                            "value": "uid-delivery",
+                            "type": "string"
+                        },
+                        "workflowIdName": {
+                            "value": "uid-workflow",
+                            "type": "string"
+                        },
+                        "droneSchedulerIdName": {
+                            "value": "uid-dronescheduler",
+                            "type": "string"
+                        },
+                        "ingestionIdName": {
+                            "value": "uid-ingestion",
+                            "type": "string"
+                        },
+                        "packageIdName": {
+                            "value": "uid-package",
+                            "type": "string"
+                        }
                     }
                 }
             }
