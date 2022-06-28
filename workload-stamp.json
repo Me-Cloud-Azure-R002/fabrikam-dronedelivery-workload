@@ -147,17 +147,17 @@
                                 }
                             },
                             "resources": [
-                                {
-                                    "type": "replications",
-                                    "apiVersion": "2019-05-01",
-                                    "name": "[parameters('geoRedundancyLocation')]",
-                                    "location": "[parameters('geoRedundancyLocation')]",
-                                    "dependsOn": [
-                                        "[variables('acrName')]"
-                                    ],
-                                    "properties": {
-                                    }
-                                }
+                                // {
+                                //     "type": "replications",
+                                //     "apiVersion": "2019-05-01",
+                                //     "name": "[parameters('geoRedundancyLocation')]",
+                                //     "location": "[parameters('geoRedundancyLocation')]",
+                                //     "dependsOn": [
+                                //         "[variables('acrName')]"
+                                //     ],
+                                //     "properties": {
+                                //     }
+                                // }
                             ]
                         }
                     ],
@@ -193,76 +193,76 @@
             "resources": [
             ]
         },
-        {
-            "type": "Microsoft.DocumentDB/databaseAccounts",
-            "name": "[variables('deliveryCosmosDbName')]",
-            "apiVersion": "2020-04-01",
-            "location": "[resourceGroup().location]",
-            "dependsOn": [
-            ],
-            "tags": {
-                "displayName": "Delivery Cosmos Db",
-                "app": "fabrikam-delivery"
-            },
-            "properties": {
-                "name": "[variables('deliveryCosmosDbName')]",
-                "databaseAccountOfferType": "Standard",
-                "isVirtualNetworkFilterEnabled": false,
-                "virtualNetworkRules": [
-                ],
-                "locations": [
-                    {
-                        "locationName": "[resourceGroup().location]",
-                        "failoverPriority": 0
-                    }
-                ]
-            }
-        },
-        {
-            "type": "Microsoft.DocumentDB/databaseAccounts",
-            "apiVersion": "2020-04-01",
-            "name": "[variables('packageMongoDbName')]",
-            "kind": "MongoDB",
-            "location": "[resourceGroup().location]",
-            "dependsOn": [
-            ],
-            "tags": {
-                "displayName": "Package Cosmos Db",
-                "app": "fabrikam-package"
-            },
-            "properties": {
-                "databaseAccountOfferType": "Standard",
-                "name": "[variables('packageMongoDbName')]",
-                "isVirtualNetworkFilterEnabled": false,
-                "virtualNetworkRules": [
-                ]
-            }
-        },
-        {
-            "type": "Microsoft.DocumentDB/databaseAccounts",
-            "name": "[variables('droneSchedulerCosmosDbName')]",
-            "apiVersion": "2020-04-01",
-            "location": "[resourceGroup().location]",
-            "dependsOn": [
-            ],
-            "tags": {
-                "displayName": "Drone Scheduler Cosmos Db",
-                "app": "fabrikam-dronescheduler"
-            },
-            "properties": {
-                "name": "[variables('droneSchedulerCosmosDbName')]",
-                "databaseAccountOfferType": "Standard",
-                "isVirtualNetworkFilterEnabled": false,
-                "virtualNetworkRules": [
-                ],
-                "locations": [
-                    {
-                        "locationName": "[resourceGroup().location]",
-                        "failoverPriority": 0
-                    }
-                ]
-            }
-        },
+        // {
+        //     "type": "Microsoft.DocumentDB/databaseAccounts",
+        //     "name": "[variables('deliveryCosmosDbName')]",
+        //     "apiVersion": "2020-04-01",
+        //     "location": "[resourceGroup().location]",
+        //     "dependsOn": [
+        //     ],
+        //     "tags": {
+        //         "displayName": "Delivery Cosmos Db",
+        //         "app": "fabrikam-delivery"
+        //     },
+        //     "properties": {
+        //         "name": "[variables('deliveryCosmosDbName')]",
+        //         "databaseAccountOfferType": "Standard",
+        //         "isVirtualNetworkFilterEnabled": false,
+        //         "virtualNetworkRules": [
+        //         ],
+        //         "locations": [
+        //             {
+        //                 "locationName": "[resourceGroup().location]",
+        //                 "failoverPriority": 0
+        //             }
+        //         ]
+        //     }
+        // },
+        // {
+        //     "type": "Microsoft.DocumentDB/databaseAccounts",
+        //     "apiVersion": "2020-04-01",
+        //     "name": "[variables('packageMongoDbName')]",
+        //     "kind": "MongoDB",
+        //     "location": "[resourceGroup().location]",
+        //     "dependsOn": [
+        //     ],
+        //     "tags": {
+        //         "displayName": "Package Cosmos Db",
+        //         "app": "fabrikam-package"
+        //     },
+        //     "properties": {
+        //         "databaseAccountOfferType": "Standard",
+        //         "name": "[variables('packageMongoDbName')]",
+        //         "isVirtualNetworkFilterEnabled": false,
+        //         "virtualNetworkRules": [
+        //         ]
+        //     }
+        // },
+        // {
+        //     "type": "Microsoft.DocumentDB/databaseAccounts",
+        //     "name": "[variables('droneSchedulerCosmosDbName')]",
+        //     "apiVersion": "2020-04-01",
+        //     "location": "[resourceGroup().location]",
+        //     "dependsOn": [
+        //     ],
+        //     "tags": {
+        //         "displayName": "Drone Scheduler Cosmos Db",
+        //         "app": "fabrikam-dronescheduler"
+        //     },
+        //     "properties": {
+        //         "name": "[variables('droneSchedulerCosmosDbName')]",
+        //         "databaseAccountOfferType": "Standard",
+        //         "isVirtualNetworkFilterEnabled": false,
+        //         "virtualNetworkRules": [
+        //         ],
+        //         "locations": [
+        //             {
+        //                 "locationName": "[resourceGroup().location]",
+        //                 "failoverPriority": 0
+        //             }
+        //         ]
+        //     }
+        // },
         {
             "type": "Microsoft.ServiceBus/namespaces",
             "name": "[variables('ingestionSBNamespace')]",
@@ -355,30 +355,30 @@
                 ]
             },
             "resources": [
-                {
-                    "type": "secrets",
-                    "name": "CosmosDB-Endpoint",
-                    "apiVersion": "2019-09-01",
-                    "properties": {
-                        "value": "[reference(resourceId('Microsoft.DocumentDB/databaseAccounts', variables('deliveryCosmosDbName'))).documentEndpoint]"
-                    },
-                    "dependsOn": [
-                        "[resourceId('Microsoft.KeyVault/vaults', variables('deliveryKeyVaultName'))]",
-                        "[resourceId('Microsoft.DocumentDB/databaseAccounts', variables('deliveryCosmosDbName'))]"
-                    ]
-                },
-                {
-                    "type": "secrets",
-                    "name": "CosmosDB-Key",
-                    "apiVersion": "2019-09-01",
-                    "properties": {
-                        "value": "[listKeys(resourceId('Microsoft.DocumentDB/databaseAccounts', variables('deliveryCosmosDbName')), '2016-03-31').primaryMasterKey]"
-                    },
-                    "dependsOn": [
-                        "[resourceId('Microsoft.KeyVault/vaults', variables('deliveryKeyVaultName'))]",
-                        "[resourceId('Microsoft.DocumentDB/databaseAccounts', variables('deliveryCosmosDbName'))]"
-                    ]
-                },
+                // {
+                //     "type": "secrets",
+                //     "name": "CosmosDB-Endpoint",
+                //     "apiVersion": "2019-09-01",
+                //     "properties": {
+                //         "value": "[reference(resourceId('Microsoft.DocumentDB/databaseAccounts', variables('deliveryCosmosDbName'))).documentEndpoint]"
+                //     },
+                //     "dependsOn": [
+                //         "[resourceId('Microsoft.KeyVault/vaults', variables('deliveryKeyVaultName'))]",
+                //         "[resourceId('Microsoft.DocumentDB/databaseAccounts', variables('deliveryCosmosDbName'))]"
+                //     ]
+                // },
+                // {
+                //     "type": "secrets",
+                //     "name": "CosmosDB-Key",
+                //     "apiVersion": "2019-09-01",
+                //     "properties": {
+                //         "value": "[listKeys(resourceId('Microsoft.DocumentDB/databaseAccounts', variables('deliveryCosmosDbName')), '2016-03-31').primaryMasterKey]"
+                //     },
+                //     "dependsOn": [
+                //         "[resourceId('Microsoft.KeyVault/vaults', variables('deliveryKeyVaultName'))]",
+                //         "[resourceId('Microsoft.DocumentDB/databaseAccounts', variables('deliveryCosmosDbName'))]"
+                //     ]
+                // },
                 {
                     "type": "secrets",
                     "name": "Redis-Endpoint",
@@ -577,30 +577,30 @@
                         "[resourceId('Microsoft.Insights/components', variables('appInsightsName'))]"
                     ]
                 },
-                {
-                    "type": "secrets",
-                    "name": "CosmosDBEndpoint",
-                    "apiVersion": "2019-09-01",
-                    "properties": {
-                        "value": "[reference(resourceId('Microsoft.DocumentDB/databaseAccounts', variables('droneSchedulerCosmosDbName'))).documentEndpoint]"
-                    },
-                    "dependsOn": [
-                        "[resourceId('Microsoft.KeyVault/vaults', variables('droneSchedulerKeyVaultName'))]",
-                        "[resourceId('Microsoft.DocumentDB/databaseAccounts', variables('droneSchedulerCosmosDbName'))]"
-                    ]
-                },
-                {
-                    "type": "secrets",
-                    "name": "CosmosDBKey",
-                    "apiVersion": "2019-09-01",
-                    "properties": {
-                        "value": "[listKeys(resourceId('Microsoft.DocumentDB/databaseAccounts', variables('droneSchedulerCosmosDbName')), '2016-03-31').primaryMasterKey]"
-                    },
-                    "dependsOn": [
-                        "[resourceId('Microsoft.KeyVault/vaults', variables('droneSchedulerKeyVaultName'))]",
-                        "[resourceId('Microsoft.DocumentDB/databaseAccounts', variables('droneSchedulerCosmosDbName'))]"
-                    ]
-                },
+                // {
+                //     "type": "secrets",
+                //     "name": "CosmosDBEndpoint",
+                //     "apiVersion": "2019-09-01",
+                //     "properties": {
+                //         "value": "[reference(resourceId('Microsoft.DocumentDB/databaseAccounts', variables('droneSchedulerCosmosDbName'))).documentEndpoint]"
+                //     },
+                //     "dependsOn": [
+                //         "[resourceId('Microsoft.KeyVault/vaults', variables('droneSchedulerKeyVaultName'))]",
+                //         "[resourceId('Microsoft.DocumentDB/databaseAccounts', variables('droneSchedulerCosmosDbName'))]"
+                //     ]
+                // },
+                // {
+                //     "type": "secrets",
+                //     "name": "CosmosDBKey",
+                //     "apiVersion": "2019-09-01",
+                //     "properties": {
+                //         "value": "[listKeys(resourceId('Microsoft.DocumentDB/databaseAccounts', variables('droneSchedulerCosmosDbName')), '2016-03-31').primaryMasterKey]"
+                //     },
+                //     "dependsOn": [
+                //         "[resourceId('Microsoft.KeyVault/vaults', variables('droneSchedulerKeyVaultName'))]",
+                //         "[resourceId('Microsoft.DocumentDB/databaseAccounts', variables('droneSchedulerCosmosDbName'))]"
+                //     ]
+                // },
                 {
                     "type": "secrets",
                     "name": "CosmosDBConnectionMode",
@@ -896,18 +896,18 @@
             "value": "[reference(resourceId('Microsoft.KeyVault/vaults', variables('droneSchedulerKeyVaultName'))).vaultUri]",
             "type": "string"
         },
-        "deliveryCosmosDbName": {
-            "value": "[variables('deliveryCosmosDbName')]",
-            "type": "string"
-        },
-        "droneSchedulerCosmosDbName": {
-            "value": "[variables('droneSchedulerCosmosDbName')]",
-            "type": "string"
-        },
-        "packageMongoDbName": {
-            "value": "[variables('packageMongoDbName')]",
-            "type": "string"
-        },
+        // "deliveryCosmosDbName": {
+        //     "value": "[variables('deliveryCosmosDbName')]",
+        //     "type": "string"
+        // },
+        // "droneSchedulerCosmosDbName": {
+        //     "value": "[variables('droneSchedulerCosmosDbName')]",
+        //     "type": "string"
+        // },
+        // "packageMongoDbName": {
+        //     "value": "[variables('packageMongoDbName')]",
+        //     "type": "string"
+        // },
         "ingestionQueueNamespace": {
             "value": "[variables('ingestionSBNamespace')]",
             "type": "string"
